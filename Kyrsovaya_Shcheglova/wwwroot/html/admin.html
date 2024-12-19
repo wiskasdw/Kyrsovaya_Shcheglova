@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Администратор</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa; /* Светло-голубой фон */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.5s, color 0.5s; /* Плавный переход */
+        }
+
+        header {
+            background-color: #4fc3f7; /* Темно-голубой фон для заголовка */
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+            nav ul li {
+                display: inline;
+                margin: 0 15px;
+            }
+
+                nav ul li a {
+                    text-decoration: none;
+                    color: white;
+                    transition: color 0.3s ease; /* Плавное изменение цвета */
+                }
+
+                    nav ul li a:hover {
+                        color: #ffeb3b; /* Желтый цвет при наведении */
+                    }
+
+        main {
+            padding: 20px;
+            opacity: 0; /* Начальная непрозрачность для анимации */
+            transition: opacity 1s ease; /* Плавное появление */
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4fc3f7;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .upload-section {
+            margin-top: 20px;
+        }
+
+            .upload-section input[type="file"] {
+                margin-right: 10px;
+            }
+
+        .pdf-viewer {
+            width: 100%;
+            height: 500px;
+            margin-top: 20px;
+            display: none; /* Скрываем по умолчанию */
+            border: 1px solid #ccc;
+        }
+    </style>
+    <script>
+        let isAuthenticated = false;
+
+        function checkPassword() {
+            var password = prompt("Введите пароль для доступа к администратору:");
+            if (password === "admin123") { // Замените "admin123" на ваш пароль
+                isAuthenticated = true;
+                document.getElementById('admin-content').style.display = "block"; // Показываем контент
+                document.getElementById('main-content').style.opacity = 1; // Устанавливаем непрозрачность в 1
+            } else {
+                alert("Неверный пароль!");
+                window.location.href = "index.html"; // Перенаправление на главную страницу
+            }
+        }
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (file && file.type === "application/pdf") {
+                const pdfViewer = document.getElementById('pdfViewer');
+                const fileURL = URL.createObjectURL(file);
+                pdfViewer.src = fileURL; // Устанавливаем источник для PDF
+                pdfViewer.style.display = 'block'; // Показываем PDF
+            } else {
+                alert("Пожалуйста, загрузите файл PDF.");
+            }
+        }
+    </script>
+</head>
+<body onload="checkPassword()">
+    <header>
+        <h1>Электронный Учебник</h1>
+        <nav>
+            <ul>
+                <li><a href="/html/index.html">Главная</a></li>
+                <li><a href="/html/lectures.html">Лекции</a></li>
+                <li><a href="/html/admin.html">Администратор</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="admin-content" style="display: none;">
+        <h2>Панель администратора</h2>
+        <p>Здесь вы можете управлять содержимым учебника.</p>
+        <div class="upload-section">
+            <label for="fileUpload">Загрузите PDF документ:</label>
+            <input type="file" id="fileUpload" accept=".pdf" onchange="handleFileUpload(event)">
+        </div>
+        <iframe id="pdfViewer" class="pdf-viewer" src=""></iframe>
+    </main>
+    <footer>
+        <p>&copy; 2023 Электронный Учебник</p>
+    </footer>
+</body>
+</html>

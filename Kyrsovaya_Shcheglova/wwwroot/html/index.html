@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инструментальные средства разработки программного обеспечения</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa; /* Светло-голубой фон */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            position: relative; /* Для позиционирования котика */
+            overflow: hidden; /* Скрываем прокрутку */
+        }
+
+        header {
+            background-color: #4fc3f7; /* Темно-голубой фон для заголовка */
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+            nav ul li {
+                display: inline;
+                margin: 0 15px;
+            }
+
+                nav ul li a {
+                    text-decoration: none;
+                    color: white;
+                    transition: color 0.3s ease; /* Плавное изменение цвета */
+                }
+
+                    nav ul li a:hover {
+                        color: #ffeb3b; /* Желтый цвет при наведении */
+                    }
+
+        main {
+            padding: 20px;
+            opacity: 0; /* Начальная непрозрачность для анимации */
+            transition: opacity 1s ease; /* Плавное появление */
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4fc3f7;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Стили для котика */
+        .cat {
+            position: absolute;
+            top: 50px; /* Отступ сверху */
+            right: 50px; /* Отступ справа */
+            width: 100px; /* Ширина котика */
+            height: auto; /* Автоматическая высота */
+            cursor: move; /* Курсор перемещения */
+        }
+
+        h2 {
+            color: #00796b; /* Цвет заголовка */
+        }
+
+        .content-section {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ffffff; /* Белый фон для секций */
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+            .content-section h3 {
+                color: #004d40; /* Темно-зеленый цвет */
+            }
+    </style>
+</head>
+<body>
+    <img src="/foto/photo_2024-12-18_19-28-24.jpg" alt="Котик" class="cat" id="cat"> <!-- Элемент котика -->
+
+    <header>
+        <h1>Электронный Учебник</h1>
+        <nav>
+            <ul>
+                <li><a href="/html/index.html">Главная</a></li>
+                <li><a href="/html/lectures.html">Лекции</a></li>
+                <li><a href="/html/admin.html">Администратор</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <h2>Инструментальные средства разработки программного обеспечения</h2>
+        <div class="content-section">
+            <h3>Описание дисциплины</h3>
+            <p>Дисциплина "Инструментальные средства разработки программного обеспечения" охватывает основные инструменты и технологии, используемые в процессе разработки программного обеспечения. Студенты изучают как программные, так и аппаратные средства, которые помогают в проектировании, разработке, тестировании и поддержке программных продуктов.</p>
+        </div>
+
+        <div class="content-section">
+            <h3>Основные темы</h3>
+            <ul>
+                <li>Системы управления версиями (например, Git)</li>
+                <li>Интегрированные среды разработки (IDE)</li>
+                <li>Инструменты автоматизации сборки и тестирования</li>
+                <li>Методы проектирования и разработки программного обеспечения</li>
+                <li>Инструменты для анализа и документирования требований</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h3>Цели курса</h3>
+            <p>Цель курса - подготовить студентов к эффективному использованию современных инструментов разработки, что позволит им успешно реализовывать проекты в области программного обеспечения.</p>
+        </div>
+
+        <button id="infoButton">Узнать больше</button>
+        <div id="info" style="display: none; margin-top: 20px;">
+            <p>Это интерактивный учебник, который поможет вам учиться с удовольствием!</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Электронный Учебник</p>
+    </footer>
+
+    <script>
+        // Функция для плавного появления контента
+        window.onload = function () {
+            const mainContent = document.getElementById('main-content');
+            mainContent.style.opacity = 1; // Устанавливаем непрозрачность в 1
+        };
+
+        // Пример интерактивности: изменение заголовка при клике
+        const header = document.querySelector('header h1');
+        header.addEventListener('click', function () {
+            header.style.color = '#ff1744'; // Изменяем цвет заголовка при клике
+            setTimeout(() => {
+                header.style.color = 'white'; // Возвращаем цвет через 1 секунду
+            }, 1000);
+        });
+
+        // Интерактивность кнопки
+        const infoButton = document.getElementById('infoButton');
+        const infoDiv = document.getElementById('info');
+
+        infoButton.addEventListener('click', function () {
+            if (infoDiv.style.display === "none") {
+                infoDiv.style.display = "block"; // Показываем дополнительную информацию
+                infoButton.innerText = "Скрыть информацию"; // Меняем текст кнопки
+            } else {
+                infoDiv.style.display = "none"; // Скрываем дополнительную информацию
+                infoButton.innerText = "Узнать больше"; // Меняем текст кнопки
+            }
+        });
+
+        // Перемещение котика
+        const cat = document.getElementById('cat');
+        let isDragging = false;
+
+        cat.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            const offsetX = e.clientX - cat.getBoundingClientRect().left;
+            const offsetY = e.clientY - cat.getBoundingClientRect().top;
+
+            const onMouseMove = (e) => {
+                if (isDragging) {
+                    cat.style.left = `${e.clientX - offsetX}px`;
+                    cat.style.top = `${e.clientY - offsetY}px`;
+                }
+            };
+
+            const onMouseUp = () => {
+                isDragging = false;
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
+            };
+
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        });
+
+        // Создание копий котика
+        cat.addEventListener('click', function () {
+            for (let i = 0; i < 5; i++) { // Создаем 5 копий
+                const newCat = cat.cloneNode(true); // Клонируем котика
+                newCat.style.position = 'absolute'; // Устанавливаем позицию
+                newCat.style.left = `${Math.random() * window.innerWidth}px`; // Случайная позиция по X
+                newCat.style.top = `${Math.random() * window.innerHeight}px`; // Случайная позиция по Y
+                document.body.appendChild(newCat); // Добавляем нового котика на страницу
+
+                // Добавляем произвольное движение
+                const moveCat = () => {
+                    const randomX = Math.random() * (window.innerWidth - 100); // Случайная позиция по X
+                    const randomY = Math.random() * (window.innerHeight - 100); // Случайная позиция по Y
+                    newCat.style.transition = 'transform 1s ease'; // Плавное перемещение
+                    newCat.style.transform = `translate(${randomX}px, ${randomY}px)`; // Применяем смещение
+                };
+
+                // Перемещение котика каждые 2 секунды
+                setInterval(moveCat, 2000);
+
+                // Удаляем котика через 10 секунд
+                setTimeout(() => {
+                    newCat.remove();
+                }, 10000);
+            }
+        });
+    </script>
+</body>
+</html>
